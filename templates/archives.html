@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content" class="body mdl-grid article">
+    <h1 class="mdl-typography--display-3 " >Archives for {{ SITENAME }}</h1>
+    <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+        <thead>
+            <tr>
+                <th class="mdl-data-table__cell--non-numeric">Title</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for article in dates %}
+                <tr>
+                    <td class="mdl-data-table__cell--non-numeric"><a href="{{ SITEURL }}/{{ article.url }}">{{ article.title }}</a></td>
+                    <td>{{ article.locale_date }}</td>
+                </tr>
+            {% endfor %} 
+        </tbody>
+    </table>
+</section>
+{% endblock %}

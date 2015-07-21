@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+    <head>
+            {% block head %}
+            <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
+            <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-indigo.min.css" /> 
+            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+            <!-- Material Design icon font -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" href="{{ SITEURL }}/theme/mdl.css" type="text/css">
+            <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome-4.3.0/css/font-awesome.min.css">
+            <meta charset="utf-8" />
+            {% if FEED_ALL_ATOM %}
+            <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+            {% endif %}
+            {% if FEED_ALL_RSS %}
+            <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
+            {% endif %}
+            {% if FEED_ATOM %}
+            <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
+            {% endif %}
+            {% if FEED_RSS %}
+            <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
+            {% endif %}
+            {% if CATEGORY_FEED_ATOM and category %}
+            <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM|format(category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+            {% endif %}
+            {% if CATEGORY_FEED_RSS and category %}
+            <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS|format(category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+            {% endif %}
+            {% if TAG_FEED_ATOM and tag %}
+            <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM|format(tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
+            {% endif %}
+            {% if TAG_FEED_RSS and tag %}
+            <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS|format(tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
+            {% endif %}
+            {% endblock head %}
+    </head>
+
+    <body id="index">
+        <div class="layout-transparent mdl-layout mdl-js-layout">
+            <header class="mdl-layout__header mdl-layout__header--transparent">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <a href="{{ SITEURL }}/" class="mdl-layout-title">{{ SITENAME }}</a>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+
+                </div>
+            </header>
+            <div class="mdl-layout__drawer">
+                <a href="{{ SITEURL }}/" id="mdl-layout-drawer-title"class="mdl-layout-title">{{ SITENAME }}</a>
+                <nav class="mdl-navigation">
+                    {% for title, link in MENUITEMS %}
+                    <li><a href="{{ link }}">{{ title }}</a></li>
+                    {% endfor %}
+                    {% if DISPLAY_PAGES_ON_MENU %}
+                    {% for p in PAGES %}
+                    <!--<li{% if p == page %} class="active"{% endif %}>--><a class="mdl-navigation__link" href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a><!--</li>-->
+                    {% endfor %}
+                    {% else %}
+                    {% if DISPLAY_CATEGORIES_ON_MENU %}
+                    {% for cat, null in categories %}
+                    <li{% if cat == category %} class="active"{% endif %}><a href="{{ SITEURL }}/{{ cat. url }}">{{ cat }}</a></li>
+                    {% endfor %}
+                    {% endif %}
+                    {% endif %}
+
+                    <div class="mdl-navigation" id="nav_bottom">
+                        <a class="mdl-navigation__link" href="{{ SITEURL }}/archives.html">Archive</a>
+                        <a class="mdl-navigation__link" href="{{ SITEURL }}/authors.html">Authors</a>
+                        <a class="mdl-navigation__link" href="{{ SITEURL }}/categories.html">Categories</a>
+                        <a class="mdl-navigation__link" href="{{ SITEURL }}/tags.html">Tags</a>
+                    </div>
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+            </main>
+            <main id="main" class="mdl-layout__content mdl-color-text--grey-600">
+                <div class="content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </main>
+            <footer class="mdl-mini-footer" id="footer">
+                <div class="mdl-mini-footer--left-section">
+                    {% if SOCIAL %}
+                        {% for name,link in SOCIAL %}
+                            <button href="{{ link }}" class="mdl-mini-footer--social-btn social-btn">
+                                <i class="fa fa-{{ name|lower }}"></i></a>
+                            </button>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+                <address id="about" class="vcard body">
+                    Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                    which takes great advantage of <a href="http://python.org">Python</a>  | Theme by <a href="http://pajowu.de/blog">pajowu</a> 
+                </address>
+                <div class="mdl-mini-footer--right-section">
+                    <!--<button class="mdl-mini-footer--social-btn social-btn__share">
+                    <i class="material-icons" role="presentation">share</i>
+                    <span class="visuallyhidden">share</span>
+                    </button>-->
+                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                        <i class="material-icons">share</i>
+                    </button>
+                </div>
+            </footer>
+        </div>
+
+        <script src="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.js"></script>
+    </body>
+</html>

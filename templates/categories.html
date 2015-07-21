@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content">
+    <h1>Categories</h1>
+    <ul>
+    {% for category, articles in categories %}
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Category</th>
+                    <th class="mdl-data-table__cell--non-numeric">Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric"><a href="{{ SITEURL }}/{{ category.url }}">{{ category.name }}</a></td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ articles|count }}</td>
+                    </tr>
+                {% endfor %} 
+            </tbody>
+        </table>
+    {% endfor %}
+    </ul>
+</section>
+{% endblock %}

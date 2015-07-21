@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Tags{% endblock %}
+
+{% block content %}
+<section id="content">
+    <h1>Tags for {{ SITENAME }}</h1>
+
+    <ul>
+    
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Author</th>
+                    <th class="mdl-data-table__cell--non-numeric">Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for tag, articles in tags|sort %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric"><a href="{{ SITEURL }}/{{ tag.url }}">{{ tag.name }}</a></td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ articles|count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    
+    </ul>
+</section>
+{% endblock %}

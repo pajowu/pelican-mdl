@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Authors{% endblock %}
+
+{% block content %}
+<section id="content">
+    <h1>Authors on {{ SITENAME }}</h1>
+        <table id="main" class="mdl-data-table mdl-js-data-table mdl-shadow--2dp">
+            <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Author</th>
+                    <th class="mdl-data-table__cell--non-numeric">Articles</th>
+                </tr>
+            </thead>
+            <tbody>
+                {%- for author, articles in authors|sort %}
+                    <tr>
+                        <td class="mdl-data-table__cell--non-numeric"><a href="{{ SITEURL }}/{{ author.url }}">{{ author.name }}</a></td>
+                        <td class="mdl-data-table__cell--non-numeric">{{ articles|count }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+</section>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block head %}
+  {{ super() }}
+  {% for keyword in article.keywords %}
+    <meta name="keywords" content="{{keyword}}" />
+  {% endfor %}
+
+  {% for description in article.description %}
+    <meta name="description" content="{{description}}" />
+  {% endfor %}
+
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}" />
+  {% endfor %}
+
+{% endblock %}
+
+{% block content %}
+<section id="content" class="body mdl-grid article">
+  <div class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">{{ article.title }}</h2>
+            </div>
+
+            <div class="mdl-card__supporting-text">
+                {% import 'translations.html' as translations with context %}
+                {{ translations.translations_for(article) }}
+                {{ article.content }}
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    DISQUS
+                </a>
+            </div>
+
+        </div>
+  <!--<header>
+    <h2 class="entry-title">
+      <a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark"
+         title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a></h2>
+ {% import 'translations.html' as translations with context %}
+ {{ translations.translations_for(article) }}
+  </header>
+  <footer class="post-info">
+    <abbr class="published" title="{{ article.date.isoformat() }}">
+      {{ article.locale_date }}
+    </abbr>
+	{% if article.modified %}
+    <abbr class="modified" title="{{ article.modified.isoformat() }}">
+      {{ article.locale_modified }}
+    </abbr>
+	{% endif %}
+    {% if article.authors %}
+    <address class="vcard author">
+      By {% for author in article.authors %}
+          <a class="url fn" href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+        {% endfor %}
+    </address>
+    {% endif %}
+  </footer>
+  <div class="entry-content">
+    {{ article.content }}
+  </div>-->
+</section>
+{% endblock %}
