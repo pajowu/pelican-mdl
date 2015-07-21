@@ -97,13 +97,14 @@
                     which takes great advantage of <a href="http://python.org">Python</a>  | Theme by <a href="http://pajowu.de/blog">pajowu</a> 
                 </address>
                 <div class="mdl-mini-footer--right-section">
-                    <!--<button class="mdl-mini-footer--social-btn social-btn__share">
-                    <i class="material-icons" role="presentation">share</i>
-                    <span class="visuallyhidden">share</span>
-                    </button>-->
-                    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+                    <button id="share-page" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
                         <i class="material-icons">share</i>
                     </button>
+                    <ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect"
+                    for="share-page">
+                        <li class="mdl-menu__item" onclick="location.href='https://twitter.com/intent/tweet?text=pajowus%20blog%20-%20{{SITEURL|replace(" ","%20")}}'">Twitter</li>
+                        <li class="mdl-menu__item" onclick="location.href='https://plus.google.com/share?url={{SITEURL|replace(" ","%20")}}'">Google Plus</li>
+                    </ul>
                 </div>
             </footer>
         </div>
