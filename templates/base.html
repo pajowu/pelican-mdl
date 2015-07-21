@@ -3,10 +3,10 @@
     <head>
             {% block head %}
             <title>{% block title %}{{ SITENAME }}{% endblock title %}</title>
-            <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-indigo.min.css" /> 
-            <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+            <link rel="stylesheet" href="//storage.googleapis.com/code.getmdl.io/1.0.0/material.indigo-indigo.min.css" /> 
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
             <!-- Material Design icon font -->
-            <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+            <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
             <link rel="stylesheet" href="{{ SITEURL }}/theme/mdl.css" type="text/css">
             <link rel="stylesheet" href="{{ SITEURL }}/theme/font-awesome-4.3.0/css/font-awesome.min.css">
             <meta charset="utf-8" />
@@ -86,8 +86,8 @@
                 <div class="mdl-mini-footer--left-section">
                     {% if SOCIAL %}
                         {% for name,link in SOCIAL %}
-                            <button href="{{ link }}" class="mdl-mini-footer--social-btn social-btn">
-                                <i class="fa fa-{{ name|lower }}"></i></a>
+                            <button class="mdl-mini-footer--social-btn social-btn" onclick="location.href='{{link}}'">
+                                <i class="fa fa-{{ name|lower }}"></i>
                             </button>
                         {% endfor %}
                     {% endif %}
